@@ -27,9 +27,7 @@ export class Player
     private canFire:boolean;
 
     // missiles
-    private missile1:Missile;
-    private missile2:Missile;
-    private missile3:Missile;
+    private missilesArray:Missile[];
     private availableMissile:Missile;
 
     public getPos(position:string):number
@@ -67,12 +65,10 @@ export class Player
         this.sprite.y = 410;
     }
 
-    public getMissiles(missile1:Missile, missile2:Missile, missile3:Missile):void
+    public getMissiles(missilesArray:Missile[]):void
     {
-        this.missile1 = missile1;
-        this.missile2 = missile2;
-        this.missile3 = missile3;
-        this.availableMissile = missile1;
+        this.missilesArray = missilesArray;
+        this.availableMissile = missilesArray[0];
     }
 
     public update():void
@@ -184,11 +180,13 @@ export class Player
 
     public getAvailableMissile():void
     {
-        if (!this.missile1.isMoving())
-            this.availableMissile = this.missile1;
-        else if (!this.missile2.isMoving())
-            this.availableMissile = this.missile2;
-        else if (!this.missile3.isMoving())
-            this.availableMissile = this.missile3;
+        for (let index = 0; index < this.missilesArray.length; index++)
+        {
+            if (!this.missilesArray[index].Moving)
+            {
+                this.availableMissile = this.missilesArray[index];
+                break;
+            }
+        }
     }
 }

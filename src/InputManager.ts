@@ -36,7 +36,6 @@ export class InputManager
                 this.leftPressed = false;
                 break;
         }
-
     }
 
     private keyLogUp(keyEvent:KeyboardEvent):void

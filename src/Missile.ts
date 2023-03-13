@@ -37,23 +37,22 @@ export class Missile
     {
         if (!this.moving) return;
 
-        this.sprite.x += 10 * Math.cos(this.angle);
-        this.sprite.y += 10 * Math.sin(this.angle);
+        this.sprite.x += 15 * Math.cos(this.angle);
+        this.sprite.y += 15 * Math.sin(this.angle);
 
         if (this.checkRange())
         {
             this.reset();
-            this.player.addMissile();
         }
     }
 
-    private reset():void
+    public reset():void
     {
+        this.player.addMissile();
         this.moving = false;
         this.sprite.visible = false;
         this.sprite.x = 0;
         this.sprite.y = 0;
-        console.log("reset missile");
     }
 
     private checkRange():boolean
@@ -65,8 +64,12 @@ export class Missile
         return false;
     }
 
-    public isMoving():boolean
+    get Moving():boolean
     {
         return this.moving;
+    }
+    get Sprite():createjs.Sprite
+    {
+        return this.sprite;
     }
 }

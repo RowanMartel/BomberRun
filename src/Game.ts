@@ -9,6 +9,8 @@ import { AssetManager } from "./AssetManager";
 import { Player } from "./Player";
 import { InputManager } from "./InputManager";
 import { Missile } from "./Missile";
+import { Enemy } from "./Enemy";
+import { EnemyManager } from "./EnemyManager";
 
 // game setup variables
 let stage:createjs.StageGL;
@@ -18,10 +20,9 @@ let assetManager:AssetManager;
 // game object variables
 let player:Player;
 let inputManager:InputManager;
+let enemyManager:EnemyManager;
 
-let missile1:Missile;
-let missile2:Missile;
-let missile3:Missile;
+let missiles:Missile[];
 
 // background sprites
 let background:createjs.Sprite;
@@ -41,10 +42,14 @@ function onReady(e:createjs.Event):void {
     inputManager = new InputManager(stage);
     player = new Player(stage, assetManager, inputManager);
 
-    missile1 = new Missile(stage, player, assetManager);
-    missile2 = new Missile(stage, player, assetManager);
-    missile3 = new Missile(stage, player, assetManager);
-    player.getMissiles(missile1, missile2, missile3);
+    missiles = [];
+    for (let index = 0; index < 3; index++)
+    {
+        missiles.push(new Missile(stage, player, assetManager));
+    }
+    player.getMissiles(missiles);
+    
+    enemyManager = new EnemyManager(stage, assetManager, missiles);
 
     // startup the ticker
     createjs.Ticker.framerate = FRAME_RATE;
@@ -58,10 +63,12 @@ function onTick(e:createjs.Event) {
 
     // this is your game loop!
     player.update();
+    enemyManager.update();
 
-    missile1.update();
-    missile2.update();
-    missile3.update();
+    for (let index = 0; index < missiles.length; index++)
+    {
+        missiles[index].update();
+    }
 
     // update the stage
     stage.update();
