@@ -173,6 +173,52 @@
         </struct>
         <key>individualSpriteSettings</key>
         <map type="IndividualSpriteSettingsMap">
+            <key type="filename">../../../SpritesForGame/Bomb/exploding_1.png</key>
+            <key type="filename">../../../SpritesForGame/Bomb/exploding_10.png</key>
+            <key type="filename">../../../SpritesForGame/Bomb/exploding_11.png</key>
+            <key type="filename">../../../SpritesForGame/Bomb/exploding_12.png</key>
+            <key type="filename">../../../SpritesForGame/Bomb/exploding_13.png</key>
+            <key type="filename">../../../SpritesForGame/Bomb/exploding_14.png</key>
+            <key type="filename">../../../SpritesForGame/Bomb/exploding_15.png</key>
+            <key type="filename">../../../SpritesForGame/Bomb/exploding_16.png</key>
+            <key type="filename">../../../SpritesForGame/Bomb/exploding_17.png</key>
+            <key type="filename">../../../SpritesForGame/Bomb/exploding_18.png</key>
+            <key type="filename">../../../SpritesForGame/Bomb/exploding_19.png</key>
+            <key type="filename">../../../SpritesForGame/Bomb/exploding_2.png</key>
+            <key type="filename">../../../SpritesForGame/Bomb/exploding_20.png</key>
+            <key type="filename">../../../SpritesForGame/Bomb/exploding_21.png</key>
+            <key type="filename">../../../SpritesForGame/Bomb/exploding_22.png</key>
+            <key type="filename">../../../SpritesForGame/Bomb/exploding_23.png</key>
+            <key type="filename">../../../SpritesForGame/Bomb/exploding_3.png</key>
+            <key type="filename">../../../SpritesForGame/Bomb/exploding_4.png</key>
+            <key type="filename">../../../SpritesForGame/Bomb/exploding_5.png</key>
+            <key type="filename">../../../SpritesForGame/Bomb/exploding_6.png</key>
+            <key type="filename">../../../SpritesForGame/Bomb/exploding_7.png</key>
+            <key type="filename">../../../SpritesForGame/Bomb/exploding_8.png</key>
+            <key type="filename">../../../SpritesForGame/Bomb/exploding_9.png</key>
+            <key type="filename">../../../SpritesForGame/Bomb/falling_1.png</key>
+            <key type="filename">../../../SpritesForGame/Bomb/falling_2.png</key>
+            <key type="filename">../../../SpritesForGame/Bomb/falling_3.png</key>
+            <key type="filename">../../../SpritesForGame/Bomb/falling_4.png</key>
+            <key type="filename">../../../SpritesForGame/Bomb/falling_5.png</key>
+            <key type="filename">../../../SpritesForGame/Bomb/falling_6.png</key>
+            <key type="filename">../../../SpritesForGame/Bomb/falling_7.png</key>
+            <key type="filename">../../../SpritesForGame/Bomb/falling_8.png</key>
+            <key type="filename">../../../SpritesForGame/Other/missile.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>8,8,16,16</rect>
+                <key>scale9Paddings</key>
+                <rect>8,8,16,16</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
             <key type="filename">../../../SpritesForGame/Other/background.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
@@ -188,10 +234,12 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">../../../SpritesForGame/Other/base.png</key>
+            <key type="filename">../../../SpritesForGame/Other/base_1.png</key>
+            <key type="filename">../../../SpritesForGame/Other/base_2.png</key>
+            <key type="filename">../../../SpritesForGame/Other/base_3.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
-                <point_f>0,0</point_f>
+                <point_f>0.5,0.5</point_f>
                 <key>spriteScale</key>
                 <double>1</double>
                 <key>scale9Enabled</key>
@@ -218,21 +266,6 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">../../../SpritesForGame/Other/missile.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>spriteScale</key>
-                <double>1</double>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>8,8,16,16</rect>
-                <key>scale9Paddings</key>
-                <rect>8,8,16,16</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
             <key type="filename">../../../SpritesForGame/Plane1/plane1dead_1.png</key>
             <key type="filename">../../../SpritesForGame/Plane1/plane1dead_10.png</key>
             <key type="filename">../../../SpritesForGame/Plane1/plane1dead_11.png</key>
@@ -248,6 +281,7 @@
             <key type="filename">../../../SpritesForGame/Plane1/plane1dead_20.png</key>
             <key type="filename">../../../SpritesForGame/Plane1/plane1dead_21.png</key>
             <key type="filename">../../../SpritesForGame/Plane1/plane1dead_22.png</key>
+            <key type="filename">../../../SpritesForGame/Plane1/plane1dead_23.png</key>
             <key type="filename">../../../SpritesForGame/Plane1/plane1dead_3.png</key>
             <key type="filename">../../../SpritesForGame/Plane1/plane1dead_4.png</key>
             <key type="filename">../../../SpritesForGame/Plane1/plane1dead_5.png</key>
@@ -303,8 +337,9 @@
         <key>fileList</key>
         <array>
             <filename>../../../SpritesForGame/Truck</filename>
-            <filename>../../../SpritesForGame/Plane1</filename>
             <filename>../../../SpritesForGame/Other</filename>
+            <filename>../../../SpritesForGame/Bomb</filename>
+            <filename>../../../SpritesForGame/Plane1</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

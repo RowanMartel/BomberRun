@@ -48,7 +48,7 @@ export class Player
     constructor(stage:createjs.StageGL, assetManager:AssetManager, inputManager:InputManager)
     {
         // initialization
-        this.speed = 20;
+        this.speed = 80;
         this.state = Player.STATE_3_MISSILES;
         this.maxMissiles = 3;
         this.missiles = this.maxMissiles;

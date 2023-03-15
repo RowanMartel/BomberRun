@@ -16,7 +16,24 @@ export class Base
         this.sprite = assetManager.getSprite("sprites", "Other/base");
         this.stage = stage;
         stage.addChild(this.sprite);
-        this.sprite.x = 250;
-        this.sprite.y = 320;
+        this.sprite.x = 320;
+        this.sprite.y = 380;
+    }
+
+    public damage():void
+    {
+        this.hp--;
+        switch(this.hp)
+        {
+            case 2:
+            case 1:
+                this.sprite.gotoAndStop(this.sprite.currentFrame - 1);
+                break;
+        }
+    }
+
+    get Sprite():createjs.Sprite
+    {
+        return this.sprite;
     }
 }

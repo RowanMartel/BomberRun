@@ -12,6 +12,7 @@ import { Missile } from "./Missile";
 import { Enemy } from "./Enemy";
 import { EnemyManager } from "./EnemyManager";
 import { Base } from "./Base";
+import { Score } from "./Score";
 
 // game setup variables
 let stage:createjs.StageGL;
@@ -23,6 +24,7 @@ let player:Player;
 let inputManager:InputManager;
 let enemyManager:EnemyManager;
 let base:Base;
+let score:Score;
 
 let missiles:Missile[];
 
@@ -34,15 +36,13 @@ let grass:createjs.Sprite;
 function onReady(e:createjs.Event):void {
     console.log(">> all assets loaded – ready to add sprites to game");
 
-    // background sprites
+    // construct game objects here
     background = assetManager.getSprite("sprites", "Other/background");
     stage.addChild(background);
-    // construct base here first so it appears in back
+    score = new Score(stage, assetManager);
     base = new Base(assetManager, stage);
     grass = assetManager.getSprite("sprites", "Other/grass", 0, 360);
     stage.addChild(grass);
-
-    // construct game objects here
     inputManager = new InputManager(stage);
     player = new Player(stage, assetManager, inputManager);
 
@@ -53,7 +53,7 @@ function onReady(e:createjs.Event):void {
     }
     player.getMissiles(missiles);
     
-    enemyManager = new EnemyManager(stage, assetManager, missiles);
+    enemyManager = new EnemyManager(stage, assetManager, missiles, base);
 
     // startup the ticker
     createjs.Ticker.framerate = FRAME_RATE;

@@ -1,4 +1,6 @@
 import { AssetManager } from "./AssetManager";
+import { Base } from "./Base";
+import { Bomb } from "./Bomb";
 import { Missile } from "./Missile";
 import { radiusHit } from "./Toolkit";
 
@@ -20,9 +22,11 @@ export class Enemy
     private speed:number;
     private armed:boolean;
 
+    private bomb:Bomb;
+
     private missiles:Missile[];
 
-    constructor(stage:createjs.StageGL, assetManager:AssetManager, missiles:Missile[])
+    constructor(stage:createjs.StageGL, assetManager:AssetManager, missiles:Missile[], base:Base)
     {
         // initialization
         this.state = Enemy.DEAD;
@@ -35,6 +39,9 @@ export class Enemy
         this.sprite.scaleY = 1.5;
         stage.addChild(this.sprite);
         this.reset();
+
+        // create bomb
+        this.bomb = new Bomb(stage, assetManager, base, missiles, this);
     }
 
     private reset():void
@@ -48,7 +55,7 @@ export class Enemy
     {
         this.state = Enemy.DYING;
         this.sprite.gotoAndPlay("Plane1/plane1dead");
-        this.sprite.on("animationend", () => this.reset());
+        this.sprite.on("animationend", () => this.reset(), this, true);
     }
 
     public spawn():void
@@ -76,6 +83,8 @@ export class Enemy
 
     public update():void
     {
+        this.bomb.update();
+
         if (this.state != Enemy.FLYING) return;
 
         switch(this.direction)
@@ -123,5 +132,11 @@ export class Enemy
     {
         this.armed = false;
         this.speed *= 1.5;
+        this.bomb.drop();
+    }
+    
+    get Sprite():createjs.Sprite
+    {
+        return this.sprite;
     }
 }
