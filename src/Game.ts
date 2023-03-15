@@ -25,12 +25,10 @@ let inputManager:InputManager;
 let enemyManager:EnemyManager;
 let base:Base;
 let score:Score;
-
 let missiles:Missile[];
-
-// background sprites
 let background:createjs.Sprite;
 let grass:createjs.Sprite;
+let gameOverBG:createjs.Sprite;
 
 // --------------------------------------------------- event handler
 function onReady(e:createjs.Event):void {
@@ -53,7 +51,11 @@ function onReady(e:createjs.Event):void {
     }
     player.getMissiles(missiles);
     
-    enemyManager = new EnemyManager(stage, assetManager, missiles, base);
+    enemyManager = new EnemyManager(stage, assetManager, missiles, base, score);
+
+    //gameOverBG = assetManager.getSprite("sprites", "Other/gameOver");
+    //stage.addChild(gameOverBG);
+    //gameOverBG.visible = false;
 
     // startup the ticker
     createjs.Ticker.framerate = FRAME_RATE;
@@ -99,5 +101,9 @@ function main():void {
 }
 
 // --------------------------------------------------- other functions
+export function gameOver():void
+{
+    score.lock();
+}
 
 main();

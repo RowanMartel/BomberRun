@@ -173,29 +173,30 @@
         </struct>
         <key>individualSpriteSettings</key>
         <map type="IndividualSpriteSettingsMap">
-            <key type="filename">glyphs/0.png</key>
-            <key type="filename">glyphs/7.png</key>
+            <key type="filename">../../../SpritesForGame/Glyphs/-.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
-                <point_f>0,0.32</point_f>
+                <point_f>-0.333333,0.31</point_f>
                 <key>spriteScale</key>
                 <double>1</double>
                 <key>scale9Enabled</key>
                 <false/>
                 <key>scale9Borders</key>
-                <rect>4,25,7,50</rect>
+                <rect>1,25,1,50</rect>
                 <key>scale9Paddings</key>
-                <rect>4,25,7,50</rect>
+                <rect>1,25,1,50</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">glyphs/1.png</key>
-            <key type="filename">glyphs/3.png</key>
-            <key type="filename">glyphs/5.png</key>
-            <key type="filename">glyphs/6.png</key>
+            <key type="filename">../../../SpritesForGame/Glyphs/0.png</key>
+            <key type="filename">../../../SpritesForGame/Glyphs/2.png</key>
+            <key type="filename">../../../SpritesForGame/Glyphs/3.png</key>
+            <key type="filename">../../../SpritesForGame/Glyphs/8.png</key>
+            <key type="filename">../../../SpritesForGame/Glyphs/9.png</key>
+            <key type="filename">../../../SpritesForGame/Glyphs/R.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
-                <point_f>0,0.32</point_f>
+                <point_f>-0.0909091,0.31</point_f>
                 <key>spriteScale</key>
                 <double>1</double>
                 <key>scale9Enabled</key>
@@ -207,27 +208,27 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">glyphs/2.png</key>
+            <key type="filename">../../../SpritesForGame/Glyphs/1.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
-                <point_f>0,0.32</point_f>
+                <point_f>-0.166667,0.31</point_f>
                 <key>spriteScale</key>
                 <double>1</double>
                 <key>scale9Enabled</key>
                 <false/>
                 <key>scale9Borders</key>
-                <rect>3,25,7,50</rect>
+                <rect>2,25,3,50</rect>
                 <key>scale9Paddings</key>
-                <rect>3,25,7,50</rect>
+                <rect>2,25,3,50</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">glyphs/4.png</key>
-            <key type="filename">glyphs/8.png</key>
-            <key type="filename">glyphs/9.png</key>
+            <key type="filename">../../../SpritesForGame/Glyphs/4.png</key>
+            <key type="filename">../../../SpritesForGame/Glyphs/6.png</key>
+            <key type="filename">../../../SpritesForGame/Glyphs/C.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
-                <point_f>0,0.32</point_f>
+                <point_f>-0.0833333,0.31</point_f>
                 <key>spriteScale</key>
                 <double>1</double>
                 <key>scale9Enabled</key>
@@ -236,13 +237,46 @@
                 <rect>3,25,6,50</rect>
                 <key>scale9Paddings</key>
                 <rect>3,25,6,50</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">../../../SpritesForGame/Glyphs/5.png</key>
+            <key type="filename">../../../SpritesForGame/Glyphs/7.png</key>
+            <key type="filename">../../../SpritesForGame/Glyphs/E.png</key>
+            <key type="filename">../../../SpritesForGame/Glyphs/S.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>-0.1,0.31</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>3,25,5,50</rect>
+                <key>scale9Paddings</key>
+                <rect>3,25,5,50</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">../../../SpritesForGame/Glyphs/O.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>-0.0666667,0.31</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>4,25,7,50</rect>
+                <key>scale9Paddings</key>
+                <rect>4,25,7,50</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
         </map>
         <key>fileList</key>
         <array>
-            <filename>glyphs</filename>
+            <filename>../../../SpritesForGame/Glyphs</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

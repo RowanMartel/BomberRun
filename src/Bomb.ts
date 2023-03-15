@@ -2,6 +2,7 @@ import { AssetManager } from "./AssetManager";
 import { Base } from "./Base";
 import { Enemy } from "./Enemy";
 import { Missile } from "./Missile";
+import { Score } from "./Score";
 import { boxHit } from "./Toolkit";
 
 export class Bomb
@@ -17,14 +18,16 @@ export class Bomb
     private base:Base;
     private missiles:Missile[];
     private host:Enemy;
+    private score:Score;
 
-    constructor(stage:createjs.StageGL, assetManager:AssetManager, base:Base, missiles:Missile[], host:Enemy)
+    constructor(stage:createjs.StageGL, assetManager:AssetManager, base:Base, missiles:Missile[], host:Enemy, score:Score)
     {
         this.sprite = assetManager.getSprite("sprites", "Bomb/falling");
         stage.addChild(this.sprite);
         this.base = base;
         this.missiles = missiles;
         this.host = host;
+        this.score = score;
         this.reset();
     }
 
@@ -57,6 +60,7 @@ export class Bomb
         this.sprite.on("animationend", () => this.reset(), this, true);
 
         if (onBase) this.base.damage();
+        else this.score.increaseScore(2);
     }
 
     private reset():void
