@@ -11,6 +11,7 @@ import { InputManager } from "./InputManager";
 import { Missile } from "./Missile";
 import { Enemy } from "./Enemy";
 import { EnemyManager } from "./EnemyManager";
+import { Base } from "./Base";
 
 // game setup variables
 let stage:createjs.StageGL;
@@ -21,6 +22,7 @@ let assetManager:AssetManager;
 let player:Player;
 let inputManager:InputManager;
 let enemyManager:EnemyManager;
+let base:Base;
 
 let missiles:Missile[];
 
@@ -35,6 +37,8 @@ function onReady(e:createjs.Event):void {
     // background sprites
     background = assetManager.getSprite("sprites", "Other/background");
     stage.addChild(background);
+    // construct base here first so it appears in back
+    base = new Base(assetManager, stage);
     grass = assetManager.getSprite("sprites", "Other/grass", 0, 360);
     stage.addChild(grass);
 

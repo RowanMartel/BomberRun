@@ -5,9 +5,9 @@ import { radiusHit } from "./Toolkit";
 export class Enemy
 {
     // state class constants
-    public static FLYING:number;
-    public static DYING:number;
-    public static DEAD:number;
+    public static FLYING:number = 0;
+    public static DYING:number = 1;
+    public static DEAD:number = 2;
 
     // direction class constants
     public static LEFT:number = 0;
@@ -18,6 +18,7 @@ export class Enemy
     private sprite:createjs.Sprite;
     private direction:number;
     private speed:number;
+    private armed:boolean;
 
     private missiles:Missile[];
 
@@ -26,6 +27,7 @@ export class Enemy
         // initialization
         this.state = Enemy.DEAD;
         this.missiles = missiles;
+        this.armed = true;
 
         // construct sprite
         this.sprite = assetManager.getSprite("sprites", "Plane1/plane1idle");
@@ -96,15 +98,30 @@ export class Enemy
             }
         }
 
-        if (this.checkRange()) this.reset();
+        if (this.checkBombingRange())
+        {
+            this.dropBomb();
+        }
+        if (this.checkOutOfRange()) this.reset();
     }
 
-    private checkRange():boolean
+    private checkOutOfRange():boolean
     {
-        if (this.sprite.x <= 0 || this.sprite.x >= 640)
+        if (this.sprite.x <= 0 + this.sprite.getBounds().x * 1.3 || this.sprite.x >= 640 - this.sprite.getBounds().x * 1.3)
         {
             return true;
         }
         return false;
+    }
+    private checkBombingRange():boolean
+    {
+        if (!this.armed) return false;
+        if (this.sprite.x > 300 && this.sprite.x < 340) return true;
+        return false;
+    }
+    private dropBomb():void
+    {
+        this.armed = false;
+        this.speed *= 1.5;
     }
 }
