@@ -256,6 +256,7 @@
             <key type="filename">Other/button2.png</key>
             <key type="filename">Other/button3.png</key>
             <key type="filename">Other/button4.png</key>
+            <key type="filename">Other/instructions1.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>

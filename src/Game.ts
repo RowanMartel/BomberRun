@@ -32,6 +32,7 @@ let grass:createjs.Sprite;
 let gameOverBG:createjs.Sprite;
 let restartButton:Button;
 let startButton:Button;
+let instructions:createjs.Sprite;
 
 // --------------------------------------------------- event handler
 function onReady(e:createjs.Event):void {
@@ -58,10 +59,11 @@ function onReady(e:createjs.Event):void {
     gameOverBG.visible = false;
     restartButton = new Button(stage, assetManager, true);
     startButton = new Button(stage, assetManager, false);
+    instructions = assetManager.getSprite("sprites", "Other/instructions", 320, 150)
+    stage.addChild(instructions);
     score.goToFront();
 
     gameActive = false;
-    enemyManager.GameActive = false;
     startButton.enable();
 
     // startup the ticker
@@ -113,6 +115,8 @@ function main():void {
 // --------------------------------------------------- other functions
 export function gameOver():void
 {
+    createjs.Sound.stop();
+    createjs.Sound.play("gameOver");
     score.lock();
     gameOverBG.visible = true;
     restartButton.enable();
@@ -122,6 +126,8 @@ export function gameOver():void
 
 export function reset():void
 {
+    createjs.Sound.stop();
+    createjs.Sound.play("startGame");
     score.unlock();
     score.reset();
     player.reset();
@@ -131,6 +137,7 @@ export function reset():void
     }
     enemyManager.reset();
     gameOverBG.visible = false;
+    instructions.visible = false;
     base.reset();
     gameActive = true;
 }// starts game from beginning

@@ -26,6 +26,7 @@ export class Missile
     public fire():void
     {
         if (this.moving) return;
+        createjs.Sound.play("rocketLaunch");
         this.sprite.visible = true;
         this.sprite.x = this.player.getPos("x");
         this.sprite.y = this.player.getPos("y");

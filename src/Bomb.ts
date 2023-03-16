@@ -55,6 +55,7 @@ export class Bomb
 
     private explode(onBase:boolean):void
     {
+        createjs.Sound.play("bombExplode");
         this.state = Bomb.STATE_EXPLODING;
         this.sprite.gotoAndPlay("Bomb/exploding");
         this.sprite.on("animationend", () => this.reset(), this, true);
@@ -73,6 +74,7 @@ export class Bomb
 
     public drop():void
     {
+        createjs.Sound.play("bombDrop");
         this.state = Bomb.STATE_FALLING;
         this.sprite.x = this.host.Sprite.x;
         this.sprite.y = this.host.Sprite.y;

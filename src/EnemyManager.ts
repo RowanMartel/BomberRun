@@ -12,7 +12,6 @@ export class EnemyManager
     private loop:ReturnType<typeof setTimeout>;
     private spawnTime:number;
     private tickCounter:number;
-    private gameActive:boolean;
 
     constructor(stage:createjs.StageGL, assetManager:AssetManager, missiles:Missile[], base:Base, score:Score)
     {
@@ -37,12 +36,15 @@ export class EnemyManager
         for (let index = 0; index < this.enemies.length; index++)
         {
             this.enemies[index].update();
+            if (this.enemies[index].State == Enemy.FLYING)
+            {
+                createjs.Sound.play("planeMove");
+            }
         }// updates planes
     }
 
     public reset():void
     {
-        this.gameActive = true;
         this.spawnTime = 1000;
         this.tickCounter = 0;
         for (let index = 0; index < this.enemies.length; index++)
@@ -71,11 +73,5 @@ export class EnemyManager
     public stopLoop():void
     {
         clearTimeout(this.loop);
-        this.gameActive = false;
     }// stops the spawning loop
-
-    set GameActive(value:boolean)
-    {
-        this.gameActive = value;
-    }
 }

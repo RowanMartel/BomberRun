@@ -32,7 +32,7 @@ export class Button
         }
         else
         {
-            this.sprite.y = 200;
+            this.sprite.y = 250;
         }// determines where to place the button based on whether or not it's a restart button
 
         stage.addChild(this.sprite);

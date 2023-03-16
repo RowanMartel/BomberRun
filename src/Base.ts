@@ -31,7 +31,7 @@ export class Base
         switch(this.hp)
         {
             case 2:
-                this.sprite.gotoAndStop("Other/baseSlightlyDamaged");
+                this.sprite.gotoAndStop("Other/baseLightlyDamaged");
                 break;
             case 1:
                 this.sprite.gotoAndStop("Other/baseHeavilyDamaged")

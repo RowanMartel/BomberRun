@@ -56,6 +56,7 @@ export class Enemy
     }
     private die():void
     {
+        createjs.Sound.play("planeExplode");
         this.score.increaseScore(1);
         this.state = Enemy.DYING;
         this.sprite.gotoAndPlay("Plane1/plane1dead");

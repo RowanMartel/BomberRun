@@ -29,4 +29,46 @@ export const ASSET_MANIFEST:Object[] = [
         id:"glyphs",
         data:0
     },
+    {
+        asset:"sound",
+        src:"./lib/audio/startGame.ogg",
+        id:"startGame",
+        data:1
+    },
+    {
+        asset:"sound",
+        src:"./lib/audio/rocketLaunch.ogg",
+        id:"rocketLaunch",
+        data:5
+    },
+    {
+        asset:"sound",
+        src:"./lib/audio/planeMove.ogg",
+        id:"planeMove",
+        data:1
+    },
+    {
+        asset:"sound",
+        src:"./lib/audio/planeExplode.ogg",
+        id:"planeExplode",
+        data:5
+    },
+    {
+        asset:"sound",
+        src:"./lib/audio/gameOver.ogg",
+        id:"gameOver",
+        data:1
+    },
+    {
+        asset:"sound",
+        src:"./lib/audio/bombExplode.ogg",
+        id:"bombExplode",
+        data:5
+    },
+    {
+        asset:"sound",
+        src:"./lib/audio/bombDrop.ogg",
+        id:"bombDrop",
+        data:5
+    },
 ];
