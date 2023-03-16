@@ -18,11 +18,7 @@ export class Player
     private speed:number;
     private state:number;
     private sprite:createjs.Sprite;
-    private missiles:number;
-    private maxMissiles:number;
-    private direction:number;
     private inputManager:InputManager;
-    private stage:createjs.StageGL;
     private moving:boolean;
     private canFire:boolean;
 
@@ -30,6 +26,19 @@ export class Player
     private missilesArray:Missile[];
     private availableMissile:Missile;
 
+    constructor(stage:createjs.StageGL, assetManager:AssetManager, inputManager:InputManager)
+    {
+        // initialization
+        this.speed = 8;
+        this.inputManager = inputManager;
+
+        // construct sprite and position on stage
+        this.sprite = assetManager.getSprite("sprites", "Truck/truck3");
+        stage.addChild(this.sprite);
+
+        this.reset();
+    }
+    
     public getPos(position:string):number
     {
         switch (position)
@@ -43,33 +52,13 @@ export class Player
             default:
                 return 0;
         }
-    }
-
-    constructor(stage:createjs.StageGL, assetManager:AssetManager, inputManager:InputManager)
-    {
-        // initialization
-        this.speed = 80;
-        this.state = Player.STATE_3_MISSILES;
-        this.maxMissiles = 3;
-        this.missiles = this.maxMissiles;
-        this.direction = Player.LEFT;
-        this.inputManager = inputManager;
-        this.stage = stage;
-        this.moving = false;
-        this.canFire = true;
-
-        // construct sprite and position on stage
-        this.sprite = assetManager.getSprite("sprites", "Truck/truck3");
-        stage.addChild(this.sprite);
-        this.sprite.x = 320;
-        this.sprite.y = 410;
-    }
+    }// gets current value of the passed-in variable
 
     public getMissiles(missilesArray:Missile[]):void
     {
         this.missilesArray = missilesArray;
         this.availableMissile = missilesArray[0];
-    }
+    }// missiles are built after player so getting them is necessary
 
     public update():void
     {
@@ -79,6 +68,8 @@ export class Player
         {
             this.fire();
         }
+
+        // movement code
         if (this.inputManager.leftPressed)
         {
             this.changeDirection(Player.LEFT);
@@ -108,7 +99,7 @@ export class Player
                     break;
             }
             return;
-        }
+        }// stops the movement animation
 
         if (!this.moving)
         {
@@ -128,34 +119,32 @@ export class Player
                     this.sprite.gotoAndPlay("Truck/truck3");
                     break;
             }
-        }
+        }// starts up movement animations
     }
 
     private moveLeft():void
     {
         if (this.sprite.x <= 25) return;
-        this.sprite.x -= 5;
+        this.sprite.x -= this.speed;
     }
     private moveRight():void
     {
         if (this.sprite.x >= 615) return;
-        this.sprite.x += 5;
+        this.sprite.x += this.speed;
     }
 
-    private changeDirection(_direction:number):void
+    private changeDirection(direction:number):void
     {
-        switch (_direction)
+        switch (direction)
         {
             case Player.LEFT:
-                this.direction = Player.LEFT;
                 this.sprite.scaleX = 1;
                 break;
             case Player.RIGHT:
-                this.direction = Player.RIGHT;
                 this.sprite.scaleX = -1;
                 break;
         }
-    }
+    }// changes player direction
 
     private fire():void
     {
@@ -169,14 +158,14 @@ export class Player
         setTimeout(() => {
             this.canFire = true;    
         }, 500);
-    }
+    }// fires the current available missile
 
     public addMissile():void
     {
         if (this.state == Player.STATE_3_MISSILES) return;
         this.state++;
         this.moving = false;
-    }
+    }// adds a missile to the missile count - max three
 
     public getAvailableMissile():void
     {
@@ -188,5 +177,14 @@ export class Player
                 break;
             }
         }
-    }
+    }// finds if there is a missile that is not in use
+
+    public reset():void
+    {
+        this.state = Player.STATE_3_MISSILES; 
+        this.sprite.x = 320;
+        this.sprite.y = 410;
+        this.moving = false;
+        this.canFire = true;
+    }// resets the player to how it was at the start
 }

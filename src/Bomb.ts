@@ -43,12 +43,12 @@ export class Bomb
                 this.missiles[index].reset();
                 break;
             }
-        }
+        }// detects collision with missiles
 
         if (boxHit(this.sprite, this.base.Sprite))
         {
             this.explode(true); // exploded on base
-        }
+        }// detects collsision with the base
 
         this.sprite.y += 10;
     }
@@ -61,15 +61,15 @@ export class Bomb
 
         if (onBase) this.base.damage();
         else this.score.increaseScore(2);
-    }
+    }// handles the bomb exploding on impact with missiles or the base
 
-    private reset():void
+    public reset():void
     {
         this.state = Bomb.STATE_ARMED;
         this.sprite.visible = false;
         this.sprite.x = 0;
         this.sprite.y = 0;
-    }
+    }// re-arms the bomb
 
     public drop():void
     {
@@ -78,5 +78,5 @@ export class Bomb
         this.sprite.y = this.host.Sprite.y;
         this.sprite.visible = true;
         this.sprite.gotoAndPlay("Bomb/falling");
-    }
+    }// starts the bomb drop
 }

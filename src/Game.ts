@@ -13,11 +13,13 @@ import { Enemy } from "./Enemy";
 import { EnemyManager } from "./EnemyManager";
 import { Base } from "./Base";
 import { Score } from "./Score";
+import { Button } from "./Button";
 
 // game setup variables
 let stage:createjs.StageGL;
 let canvas:HTMLCanvasElement;
 let assetManager:AssetManager;
+let gameActive:boolean;
 
 // game object variables
 let player:Player;
@@ -29,6 +31,7 @@ let missiles:Missile[];
 let background:createjs.Sprite;
 let grass:createjs.Sprite;
 let gameOverBG:createjs.Sprite;
+let button:Button;
 
 // --------------------------------------------------- event handler
 function onReady(e:createjs.Event):void {
@@ -43,19 +46,20 @@ function onReady(e:createjs.Event):void {
     stage.addChild(grass);
     inputManager = new InputManager(stage);
     player = new Player(stage, assetManager, inputManager);
-
     missiles = [];
     for (let index = 0; index < 3; index++)
     {
         missiles.push(new Missile(stage, player, assetManager));
     }
     player.getMissiles(missiles);
-    
     enemyManager = new EnemyManager(stage, assetManager, missiles, base, score);
+    gameOverBG = assetManager.getSprite("sprites", "Other/gameover");
+    stage.addChild(gameOverBG);
+    gameOverBG.visible = false;
+    button = new Button(stage, assetManager);
+    score.goToFront();
 
-    //gameOverBG = assetManager.getSprite("sprites", "Other/gameOver");
-    //stage.addChild(gameOverBG);
-    //gameOverBG.visible = false;
+    gameActive = true;
 
     // startup the ticker
     createjs.Ticker.framerate = FRAME_RATE;
@@ -68,12 +72,15 @@ function onTick(e:createjs.Event) {
     document.getElementById("fps").innerHTML = String(createjs.Ticker.getMeasuredFPS());
 
     // this is your game loop!
-    player.update();
-    enemyManager.update();
-
-    for (let index = 0; index < missiles.length; index++)
+    if (gameActive)
     {
-        missiles[index].update();
+        player.update();
+        enemyManager.update();
+
+        for (let index = 0; index < missiles.length; index++)
+        {
+            missiles[index].update();
+        }
     }
 
     // update the stage
@@ -104,6 +111,25 @@ function main():void {
 export function gameOver():void
 {
     score.lock();
-}
+    gameOverBG.visible = true;
+    button.enable();
+    enemyManager.stopLoop();
+    gameActive = false;
+}// brings up game over screen
+
+export function reset():void
+{
+    score.unlock();
+    score.reset();
+    player.reset();
+    for (let index = 0; index < missiles.length; index++)
+    {
+        missiles[index].reset();
+    }
+    enemyManager.reset();
+    gameOverBG.visible = false;
+    base.reset();
+    gameActive = true;
+}// starts game from beginning
 
 main();

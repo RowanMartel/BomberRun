@@ -32,7 +32,7 @@ export class Missile
         this.angle = Math.atan2(this.stage.mouseY - this.sprite.y, this.stage.mouseX - this.sprite.x ) ;
         this.sprite.rotation = this.angle * 180 / Math.PI + 90;
         this.moving = true;
-    }
+    }// launches missile from the player
 
     public update():void
     {
@@ -40,11 +40,9 @@ export class Missile
 
         this.sprite.x += 15 * Math.cos(this.angle);
         this.sprite.y += 15 * Math.sin(this.angle);
+        // trigonometry is used to maintain consistent speed regardless of direction
 
-        if (this.checkRange())
-        {
-            this.reset();
-        }
+        if (this.checkRange()) this.reset();
     }
 
     public reset():void
@@ -63,7 +61,7 @@ export class Missile
             return true;
         }
         return false;
-    }
+    }// checks if out of bounds
 
     get Moving():boolean
     {

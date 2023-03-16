@@ -32,8 +32,10 @@ export class Enemy
         // initialization
         this.state = Enemy.DEAD;
         this.missiles = missiles;
-        this.armed = true;
         this.score = score;
+        
+        // create bomb
+        this.bomb = new Bomb(stage, assetManager, base, missiles, this, score);
 
         // construct sprite
         this.sprite = assetManager.getSprite("sprites", "Plane1/plane1idle");
@@ -41,9 +43,6 @@ export class Enemy
         this.sprite.scaleY = 1.5;
         stage.addChild(this.sprite);
         this.reset();
-
-        // create bomb
-        this.bomb = new Bomb(stage, assetManager, base, missiles, this, score);
     }
 
     public reset():void
@@ -52,6 +51,8 @@ export class Enemy
         this.sprite.visible = false;
         this.sprite.x = 0;
         this.sprite.y = 0;
+        this.armed = true;
+        this.bomb.reset();
     }
     private die():void
     {
@@ -63,9 +64,9 @@ export class Enemy
 
     public spawn():void
     {
-        this.direction = Math.round(Math.random());
-        this.speed = Math.random() * 3 + 1;
+        this.speed = Math.random() * 3 + 1; // randomized speed
 
+        this.direction = Math.round(Math.random()); 
         switch (this.direction)
         {
             case Enemy.LEFT:
@@ -76,13 +77,14 @@ export class Enemy
                 this.sprite.x = 0;
                 this.sprite.scaleX = -1.5;
                 break;
-        }
-        this.sprite.y = Math.round(Math.random() * 100) + 100;
+        }// randomized direction
+
+        this.sprite.y = Math.round(Math.random() * 100) + 100; // randomized height
 
         this.sprite.gotoAndPlay("Plane1/plane1idle");
         this.sprite.visible = true;
         this.state = Enemy.FLYING;
-    }
+    }// spawns the plane on the edges of the screen
 
     public update():void
     {
@@ -98,7 +100,7 @@ export class Enemy
             case Enemy.RIGHT:
                 this.sprite.x += this.speed;
                 break;  
-        }
+        }// moves the plane
 
         for (let index = 0; index < this.missiles.length; index++)
         {
@@ -108,12 +110,12 @@ export class Enemy
                 this.missiles[index].reset();
                 break;
             }
-        }
+        }// checks impact with missiles
 
         if (this.checkBombingRange())
         {
             this.dropBomb();
-        }
+        }// drops bomb if in range of base
         if (this.checkOutOfRange()) this.reset();
     }
 
@@ -124,22 +126,27 @@ export class Enemy
             return true;
         }
         return false;
-    }
+    }// checks if plane is out of bounds
     private checkBombingRange():boolean
     {
         if (!this.armed) return false;
         if (this.sprite.x > 300 && this.sprite.x < 340) return true;
         return false;
-    }
+    }// checks if plane is in range of base
+
     private dropBomb():void
     {
         this.armed = false;
         this.speed *= 1.5;
         this.bomb.drop();
-    }
+    }// drops the bomb
     
     get Sprite():createjs.Sprite
     {
         return this.sprite;
+    }
+    get State():number
+    {
+        return this.state;
     }
 }

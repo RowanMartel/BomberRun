@@ -1,7 +1,5 @@
 export class InputManager
 {
-    private stage:createjs.StageGL;
-
     // input bools
     public leftPressed:boolean;
     public rightPressed:boolean;
@@ -12,7 +10,6 @@ export class InputManager
         this.leftPressed = false;
         this.rightPressed = false;
         this.mousePressed = false;
-        this.stage = stage;
 
         // document.onkeydown = this.keyLogDown;
         document.onkeydown = (keyEvent:KeyboardEvent):void => this.keyLogDown(keyEvent);
@@ -36,7 +33,7 @@ export class InputManager
                 this.leftPressed = false;
                 break;
         }
-    }
+    }// logs when a, d, left, or right is pressed
 
     private keyLogUp(keyEvent:KeyboardEvent):void
     {
@@ -51,13 +48,14 @@ export class InputManager
                 this.rightPressed = false;
                 break;
         }
-    }
+    }// logs when a, d, left, or right is released
+
     private mouseLogDown(e:createjs.Event):void
     {
         this.mousePressed = true;
-    }
+    }// logs mouse input
     private mouseLogUp(e:createjs.Event):void
     {
         this.mousePressed = false;
-    }
+    }// logs mouse release
 }

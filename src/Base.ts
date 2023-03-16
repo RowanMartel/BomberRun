@@ -1,4 +1,5 @@
 import { AssetManager } from "./AssetManager";
+import { gameOver } from "./Game";
 
 export class Base
 {
@@ -8,16 +9,20 @@ export class Base
     // properties
     private hp:number;
     private sprite:createjs.Sprite;
-    private stage:createjs.StageGL;
 
     constructor(assetManager:AssetManager, stage:createjs.StageGL)
     {
-        this.hp = Base.MAXHP;
         this.sprite = assetManager.getSprite("sprites", "Other/base");
-        this.stage = stage;
+        this.reset();
         stage.addChild(this.sprite);
         this.sprite.x = 320;
         this.sprite.y = 380;
+    }
+
+    public reset():void
+    {
+        this.hp = Base.MAXHP;
+        this.sprite.gotoAndStop("Other/base");
     }
 
     public damage():void
@@ -29,8 +34,11 @@ export class Base
             case 1:
                 this.sprite.gotoAndStop(this.sprite.currentFrame - 1);
                 break;
+            case 0:
+                gameOver();
+                break;
         }
-    }
+    }// handles the base taking damage. can trigger a game over
 
     get Sprite():createjs.Sprite
     {
