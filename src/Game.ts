@@ -9,7 +9,6 @@ import { AssetManager } from "./AssetManager";
 import { Player } from "./Player";
 import { InputManager } from "./InputManager";
 import { Missile } from "./Missile";
-import { Enemy } from "./Enemy";
 import { EnemyManager } from "./EnemyManager";
 import { Base } from "./Base";
 import { Score } from "./Score";
@@ -31,7 +30,8 @@ let missiles:Missile[];
 let background:createjs.Sprite;
 let grass:createjs.Sprite;
 let gameOverBG:createjs.Sprite;
-let button:Button;
+let restartButton:Button;
+let startButton:Button;
 
 // --------------------------------------------------- event handler
 function onReady(e:createjs.Event):void {
@@ -56,10 +56,13 @@ function onReady(e:createjs.Event):void {
     gameOverBG = assetManager.getSprite("sprites", "Other/gameover");
     stage.addChild(gameOverBG);
     gameOverBG.visible = false;
-    button = new Button(stage, assetManager);
+    restartButton = new Button(stage, assetManager, true);
+    startButton = new Button(stage, assetManager, false);
     score.goToFront();
 
-    gameActive = true;
+    gameActive = false;
+    enemyManager.GameActive = false;
+    startButton.enable();
 
     // startup the ticker
     createjs.Ticker.framerate = FRAME_RATE;
@@ -112,7 +115,7 @@ export function gameOver():void
 {
     score.lock();
     gameOverBG.visible = true;
-    button.enable();
+    restartButton.enable();
     enemyManager.stopLoop();
     gameActive = false;
 }// brings up game over screen

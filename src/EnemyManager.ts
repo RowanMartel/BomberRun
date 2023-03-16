@@ -12,6 +12,7 @@ export class EnemyManager
     private loop:ReturnType<typeof setTimeout>;
     private spawnTime:number;
     private tickCounter:number;
+    private gameActive:boolean;
 
     constructor(stage:createjs.StageGL, assetManager:AssetManager, missiles:Missile[], base:Base, score:Score)
     {
@@ -21,7 +22,6 @@ export class EnemyManager
         {
             this.enemies.push(new Enemy(stage, assetManager, missiles, base, score));
         }// makes the enemy object pool
-        this.reset();
     }
 
     public update():void
@@ -31,7 +31,6 @@ export class EnemyManager
         {
             this.spawnTime--;
             if (this.spawnTime < 0) this.spawnTime = 0;
-            console.log(this.spawnTime);
             this.tickCounter = 0;
         }// reduces time until next spawn every five ticks
 
@@ -43,6 +42,7 @@ export class EnemyManager
 
     public reset():void
     {
+        this.gameActive = true;
         this.spawnTime = 1000;
         this.tickCounter = 0;
         for (let index = 0; index < this.enemies.length; index++)
@@ -71,5 +71,11 @@ export class EnemyManager
     public stopLoop():void
     {
         clearTimeout(this.loop);
+        this.gameActive = false;
     }// stops the spawning loop
+
+    set GameActive(value:boolean)
+    {
+        this.gameActive = value;
+    }
 }

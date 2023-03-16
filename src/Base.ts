@@ -12,7 +12,7 @@ export class Base
 
     constructor(assetManager:AssetManager, stage:createjs.StageGL)
     {
-        this.sprite = assetManager.getSprite("sprites", "Other/base");
+        this.sprite = assetManager.getSprite("sprites", "Other/baseUndamaged");
         this.reset();
         stage.addChild(this.sprite);
         this.sprite.x = 320;
@@ -31,8 +31,10 @@ export class Base
         switch(this.hp)
         {
             case 2:
+                this.sprite.gotoAndStop("Other/baseSlightlyDamaged");
+                break;
             case 1:
-                this.sprite.gotoAndStop(this.sprite.currentFrame - 1);
+                this.sprite.gotoAndStop("Other/baseHeavilyDamaged")
                 break;
             case 0:
                 gameOver();
