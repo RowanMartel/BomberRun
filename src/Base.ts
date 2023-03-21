@@ -22,7 +22,7 @@ export class Base
     public reset():void
     {
         this.hp = Base.MAXHP;
-        this.sprite.gotoAndStop("Other/base");
+        this.sprite.gotoAndStop("Other/baseUndamaged");
     }
 
     public damage():void
